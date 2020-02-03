@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify, abort
 from flask_sqlalchemy import SQLAlchemy
 
+from flask_migrate import Migrate
+
 import sys
 
 # our app name will be app, since the file is called app.py
@@ -9,6 +11,8 @@ app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgres://ibrahimelgohary@localhost:5432/todoapp'
 
 db = SQLAlchemy(app)
+
+migrate = Migrate(app, db)
 
 # inheriting from db.Model and to be linked to sqlalchemy
 # we will be defining our model
